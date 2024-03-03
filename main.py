@@ -24,7 +24,10 @@ def cloneVoice(usermp3, vName, vDescription):
         files=[usermp3],
     )
     sg.popup("Voice Successfully Created")
-    
+
+
+menu_def = [["Toolbar", ["Command 1", "Command2", "---", "Command 4"]],
+                ["Help", ["Settings", "About", "Exit"]]]  
 
 
 
@@ -40,6 +43,7 @@ def cloneVoice(usermp3, vName, vDescription):
 
 
 layout = [
+    [sg.MenubarCustom(menu_def, tearoff=True)],
     [sg.Text("Input MP3 Audio File"), sg.Input(key="MP3"), sg.FileBrowse(file_types=(("MP3 Files", "*.mp3*")))],
     [sg.Text("Voice Name"), sg.Input(key="name")],
     [sg.Multiline(size=(30, 5), key="textbox")],  # identify the multiline via key option
@@ -55,6 +59,9 @@ while True:
         break
     if event == "Clone MP3 Voice":
         cloneVoice(values["MP3"], values["name"], values["textbox"])
+    if event == "About":
+        window.disappear()
+        sg.popup(Window_title)
 window.close()
 
     
